@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 originalPosition = new Vector3(0,0,0);
 
     private CharacterController characterController;
+    private AudioSource audioSource;
 
     private int layerMask;
 
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
 
         layerMask = LayerMask.GetMask("Wall");
     }
@@ -80,6 +82,7 @@ public class PlayerController : MonoBehaviour
         if (hit || hit2 || hit3 || hit4 || hit5 || hit6 || hit7 || hit8)
         {
             Debug.Log("ENTROU NO IF");
+            audioSource.Play();
             transform.position = Vector3.zero;
         }
 
