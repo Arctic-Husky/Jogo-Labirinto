@@ -7,7 +7,17 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject playerObject;
 
+    public Camera Camera;
+
     public float speed = 5f;
+
+    public AudioClip[] walkSound;
+
+    public float rayDistance = 2f;
+    public float rayDistanceCamera = 20f;
+    
+    private Vector3 lastPosition;
+    
 
     public Vector3 originalPosition = new Vector3(0,0,0);
 
@@ -43,14 +53,24 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(horizontalMovement, 0f, verticalMovement);
         movement.Normalize();
 
-        characterController.Move(movement * speed * Time.deltaTime);
+        characterController.Move(movement * (speed * Time.deltaTime));
+        
+        Vector3 currentPosition = transform.position;
+        float distance = Vector3.Distance(currentPosition, lastPosition);
+        
+        if (distance >= 2f)
+        {
+            int randomInt = Random.Range(0, walkSound.Length);
+            audioSource.PlayOneShot(walkSound[randomInt]);
+            lastPosition = currentPosition;
+        }
 
         Vector3 rayOrigin = transform.position;
         Vector3 rayDirection = transform.forward;
 
-        Debug.Log(rayDirection);
-        Debug.Log(transform.right);
-        float rayDistance = 2f;
+        // Debug.Log(rayDirection);
+        // Debug.Log(transform.right);
+        
 
         bool hit = Physics.Raycast(rayOrigin, forward, rayDistance, layerMask);
         bool hit2 = Physics.Raycast(rayOrigin, right, rayDistance, layerMask);
@@ -70,22 +90,12 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(rayOrigin, back_left * rayDistance, Color.red);
         Debug.DrawRay(rayOrigin, back_right * rayDistance, Color.red);
 
-        /*Debug.Log(hit);
-        Debug.Log(hit2);
-        Debug.Log(hit3);
-        Debug.Log(hit4);
-        Debug.Log(hit5);
-        Debug.Log(hit6);
-        Debug.Log(hit7);
-        Debug.Log(hit8);*/
-
         if (hit || hit2 || hit3 || hit4 || hit5 || hit6 || hit7 || hit8)
         {
-            Debug.Log("ENTROU NO IF");
             audioSource.Play();
             transform.position = Vector3.zero;
         }
 
-        
+
     }
 }

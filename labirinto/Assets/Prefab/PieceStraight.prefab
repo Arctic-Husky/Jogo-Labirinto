@@ -299,6 +299,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3924211371753726941}
+  - component: {fileID: 1300689049940725938}
+  - component: {fileID: 8727252732345740077}
   m_Layer: 0
   m_Name: PieceStraight
   m_TagString: Untagged
@@ -324,6 +326,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1300689049940725938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122552842388450719}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 1, z: 6}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &8727252732345740077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122552842388450719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70185d7efc1b2f645aeb4f45a4fff0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjects:
+  - {fileID: 4554900102918397998}
+  - {fileID: 444387078649859674}
+  - {fileID: 5760711761397050885}
+  Renderers:
+  - {fileID: 5193346968612051130}
+  - {fileID: 4681276001951234749}
+  - {fileID: 7212901841373927028}
 --- !u!1 &4554900102918397998
 GameObject:
   m_ObjectHideFlags: 0
