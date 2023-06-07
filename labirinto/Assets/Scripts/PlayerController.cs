@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public delegate void PlayerDeath();
+    public static event PlayerDeath OnPlayerDeath;
+    
     public GameObject playerObject;
 
     public Camera Camera;
@@ -94,6 +97,8 @@ public class PlayerController : MonoBehaviour
         {
             audioSource.Play();
             transform.position = Vector3.zero;
+            
+            OnPlayerDeath?.Invoke();
         }
 
 
